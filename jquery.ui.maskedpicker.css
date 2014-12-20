@@ -1,0 +1,86 @@
+#maskedpicker-page-div { padding: 0.2em; }
+
+.maskedpicker-widget { padding: 0.2em; }
+
+.maskedpicker-widget .maskedpicker-header {
+	padding: 0.2em 0;
+	position: relative;
+}
+
+.maskedpicker-widget .maskedpicker-prev, .maskedpicker-widget .maskedpicker-next {
+	height: 1.8em;
+	position: absolute;
+	top: 2px;
+	width: 1.8em;
+}
+
+.maskedpicker-widget .maskedpicker-prev span, .maskedpicker-widget .maskedpicker-next span {
+	display: block;
+	left: 50%;
+	margin-left: -8px;
+	margin-top: -8px;
+	position: absolute;
+	top: 50%;
+}
+
+.maskedpicker-widget .maskedpicker-prev {
+	left: 2px;
+}
+
+.maskedpicker-widget .maskedpicker-next {
+	right: 2px;
+}
+
+.maskedpicker-widget .maskedpicker-prev-hover {
+	top: 1px;
+	left: 1px;
+}
+
+.maskedpicker-widget .maskedpicker-next-hover {
+	top: 1px;
+	right: 1px;
+}
+
+.maskedpicker-widget .maskedpicker-title {
+	line-height: 1.8em;
+	margin: 0 2.3em;
+	text-align: center;
+}
+
+.maskedpicker-widget .maskedpicker-body { margin-top: 0.2em; }
+
+.maskedpicker-widget .maskedpicker-body .maskedpicker-body-select {
+	border-collapse: collapse;
+	font-size: 0.9em;
+	margin: 0 0 0.2em;
+	width: 100%;
+}
+
+.maskedpicker-widget .maskedpicker-body .maskedpicker-body-select td {
+	border: 0 none;
+	padding: 1px;
+}
+
+.maskedpicker-widget .maskedpicker-body .maskedpicker-body-select td span, .maskedpicker-widget .maskedpicker-body .maskedpicker-body-select td a {
+	display: block;
+	padding: 0.2em;
+	text-align: center;
+	text-decoration: none;
+}
+
+.maskedpicker-widget .maskedpicker-body .maskedpicker-body-freeform {
+	width: 100%;
+	padding: 0.2em 0.5em;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.maskedpicker-widget .maskedpicker-body .maskedpicker-body-enteredinput {
+	background-image: none;
+	border-bottom: 0 none;
+	border-left: 0 none;
+	border-right: 0 none;
+	margin: 0.3em 0 0 0;
+	padding: 0.2em 0.3em;
+}

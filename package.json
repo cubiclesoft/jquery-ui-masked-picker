@@ -1,0 +1,38 @@
+{
+  "name": "jquery-ui-maskedpicker",
+  "version": "1.0.0",
+  "description": "A jQuery UI plugin that implements a masked picker to fill in a custom-formatted string.",
+  "organization": "CubicleSoft",
+  "main": "jquery.ui.maskedpicker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cubiclesoft/jquery-ui-masked-picker.git"
+  },
+  "bugs": "https://github.com/cubiclesoft/jquery-ui-masked-picker/issues",
+  "github": "https://github.com/cubiclesoft/jquery-ui-masked-picker",
+  "keywords": [
+    "jquery-plugin",
+    "jquery-ui-plugin",
+    "masked-picker",
+    "masked-input",
+    "wizard"
+  ],
+  "author": "CubicleSoft",
+  "license": "MIT or LGPL (your choice)",
+  "bugs": {
+    "url": "https://github.com/cubiclesoft/jquery-ui-masked-picker/issues"
+  },
+  "homepage": "https://github.com/cubiclesoft/jquery-ui-masked-picker",
+  "files": [
+    "jquery.ui.maskedpicker.css",
+    "jquery.ui.maskedpicker.js",
+    "jquery.ui.maskedpicker.min.js"
+  ],
+  "dependencies": {
+    "jquery": ">1.7.0",
+    "jquery-ui": ">1.9.0"
+  }
+}

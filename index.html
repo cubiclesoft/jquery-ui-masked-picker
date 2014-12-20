@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+<title>jQuery UI Masked Picker</title>
+<link rel="stylesheet" href="support/jquery_ui_themes/smoothness/jquery-ui-1.10.4.css" type="text/css" />
+<link rel="stylesheet" href="jquery.ui.maskedpicker.css" type="text/css" />
+
+<script type="text/javascript" src="support/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="support/jquery-ui-1.10.4.min.js"></script>
+
+<script type="text/javascript" src="jquery.ui.maskedpicker.js"></script>
+
+<style type="text/css">
+body {
+	color: #333333;
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	margin: 0;
+	padding: 0.3em;
+}
+
+a:link, a:active, a:visited {
+	color: #1C94C4;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a img {
+	border: medium none;
+}
+
+img {
+	height: auto;
+	max-width: 100%;
+	width: auto;
+}
+
+div#mainwrap {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 980px;
+}
+
+div#contentwrap div#tab_examples div.example {
+	margin-top: 0.7em;
+	margin-bottom: 0.7em;
+}
+
+div#contentwrap div#tab_examples div.example label {
+	display: block;
+	font-weight: bold;
+}
+
+div#contentwrap div#tab_examples div.example div.formitemdata input.text {
+	width: 95%;
+	font-size: 0.9em;
+	padding: 0.3em;
+	border: 1px solid #BBBBBB;
+}
+
+div#contentwrap div#tab_examples div.example div.formitemdata input.text:focus {
+	border: 1px solid #888888;
+}
+
+div#contentwrap div#tab_examples div.example div.formitemdata input.text:hover {
+	border: 1px solid #888888;
+}
+
+div#contentwrap .ui-widget {
+	font-size: 1.0em;
+}
+
+div#contentwrap h3 {
+	margin-top: 1.0em;
+	margin-bottom: 0;
+}
+
+div#contentwrap div#tab_usage pre {
+	overflow-x: auto;
+}
+
+div#contentwrap div#tab_usage pre.code {
+	margin: 0.4em 0 2.5em;
+	border: 1px solid #CFCFCF;
+	padding: 0.5em;
+	background-color: #FAFAFA;
+	border-radius: 3px;
+	color: #333333;
+}
+
+div#footerwrap {
+	border-top: 1px dashed #cccccc;
+	color: #666666;
+	font-size: 0.8em;
+	font-weight: bold;
+	margin-bottom: 1em;
+	margin-top: 2em;
+	padding-top: 0.5em;
+}
+
+/* Some extra styles.  You may or may not want to do something similar. */
+div.maskedpicker-page {
+	font-size: 0.8em !important;
+}
+
+div.maskedpicker-page .ui-datepicker {
+	width: auto;
+}
+</style>
+
+<script type="text/javascript">
+$(function() {
+	$('#tabs').tabs();
+});
+</script>
+</head>
+<body>
+<div id="mainwrap">
+	<div id="headerwrap">
+		<h1>jQuery UI Masked Picker</h1>
+		<p>
+			A jQuery UI plugin that implements a masked picker to fill in a custom-formatted string.
+			Displays a set of options for each "page" and can embed other jQuery UI widgets (e.g. datepicker).
+			The user's keyboard is intelligently overridden.
+			Themeroller compatible.
+		</p>
+		<p>
+			Licensed under the MIT or LGPL license (your choice).
+		</p>
+		<p>
+			<a href="https://github.com/cubiclesoft/jquery-ui-masked-picker/">Get it now on GitHub</a>
+		</p>
+	</div>
+	<div id="contentwrap">
+		<div id="tabs">
+			<ul>
+				<li><a href="#tab_examples">Examples</a></li>
+				<li><a href="#tab_usage">Usage</a></li>
+				<li><a href="#tab_requirements">Requirements</a></li>
+			</ul>
+
+			<div id="tab_examples">
+
+				<div class="example">
+					<label for="maskedpicker_1">Time selection</label>
+					<div class="formitemdata">
+						<input class="text" type="text" id="maskedpicker_1" value="" />
+<script type="text/javascript">
+$(function() {
+	$('#maskedpicker_1').maskedpicker({
+		maxWidth: 400,
+		mask: [
+			{ 'type': 'select', 'page': 'Hour', 'values': [
+				['1', '2', '3', '4', '5', '6'],
+				['7', '8', '9', '10', '11', '12']
+			] },
+			{ 'type': 'fixed', 'value': ':' },
+			{ 'type': 'select', 'page': 'Minute', 'values': [
+				['00', '15', '30', '45']
+			] },
+			{ 'type': 'fixed', 'value': ' ' },
+			{ 'type': 'select', 'page': 'AM/PM', 'case': 'insensitive', 'values': [
+				['am', 'pm']
+			] }
+		],
+		initial: '12:00 am'
+	});
+});
+</script>
+					</div>
+				</div>
+
+				<div class="example">
+					<label for="maskedpicker_2">Date/time selection with freeform</label>
+					<div class="formitemdata">
+						<input class="text" type="text" id="maskedpicker_2" value="" />
+<script type="text/javascript">
+$(function() {
+	$('#maskedpicker_2').maskedpicker({
+		maxWidth: 400,
+		mask: [
+			{ 'type': 'date', 'page': 'Date', 'options': { dateFormat: 'yy-mm-dd' } },
+			{ 'type': 'fixed', 'value': ' ' },
+			{ 'type': 'select', 'page': 'Hour', 'values': [
+				['1', '2', '3', '4', '5', '6'],
+				['7', '8', '9', '10', '11', '12']
+			] },
+			{ 'type': 'fixed', 'value': ':' },
+			{ 'type': 'select', 'page': 'Minute', 'values': [
+				['00', '15', '30', '45']
+			] },
+			{ 'type': 'fixed', 'value': ' ' },
+			{ 'type': 'select', 'page': 'AM/PM', 'case': 'insensitive', 'values': [
+				['am', 'pm']
+			] },
+			{ 'type': 'fixed', 'value': '  // ' },
+			{ 'type': 'freeform', 'page': 'Optional comment', 'multiline': false }
+		],
+		initial: (new Date().getFullYear()) + '-12-31 12:00 am  // A comment'
+	});
+});
+</script>
+					</div>
+				</div>
+
+				<div class="example">
+					<label for="maskedpicker_3">Phone number (USA)</label>
+					<div class="formitemdata">
+						<input class="text" type="text" id="maskedpicker_3" value="(000) 000-0000" />
+<script type="text/javascript">
+$(function() {
+	var dialpad = [
+		['1', '2', '3'],
+		['4', '5', '6'],
+		['7', '8', '9'],
+		[false, '0', false]
+	];
+	$('#maskedpicker_3').maskedpicker({
+		maxWidth: 300,
+		mask: [
+			{ 'type': 'fixed', 'value': '(' },
+			{ 'type': 'select', 'page': 'Area code', 'values': dialpad },
+			{ 'type': 'select', 'page': 'Area code', 'values': dialpad },
+			{ 'type': 'select', 'page': 'Area code', 'values': dialpad },
+			{ 'type': 'fixed', 'value': ') ' },
+			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
+			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
+			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
+			{ 'type': 'fixed', 'value': '-' },
+			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
+			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
+			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
+			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
+			{ 'type': 'fixed', 'value': ' ' },
+			{ 'type': 'freeform', 'page': 'Extension' }
+		]
+	});
+});
+</script>
+					</div>
+				</div>
+
+				<div class="example">
+					<label for="maskedpicker_4">Currency</label>
+					<div class="formitemdata">
+						<input class="text" type="text" id="maskedpicker_4" value="$1234.0" />
+						<input class="text" type="hidden" id="maskedpicker_4_hidden" value="" />
+<script type="text/javascript">
+// Swiped from:  http://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-money-in-javascript
+Number.prototype.formatMoney = function(c, d, t) {
+	var n = this,
+	c = isNaN(c = Math.abs(c)) ? 2 : c,
+	d = d == undefined ? "." : d,
+	t = t == undefined ? "," : t,
+	s = n < 0 ? "-" : "",
+	i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
+	j = (j = i.length) > 3 ? j % 3 : 0;
+
+	return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+};
+
+$(function() {
+	$('#maskedpicker_4').maskedpicker({
+		maxWidth: 300,
+		mask: [
+			{ 'type': 'select', 'page': 'Type', 'values': [
+				['$', '&#8364;', '&#8360;']
+			], extra: {
+				'$': { 'radix': '.', 'thousands': ',', 'prefix': '' },
+				'&#8364;': { 'radix': ',', 'thousands': '.', 'prefix': '' },
+				'&#8360;': { 'radix': '.', 'thousands': ' ', 'prefix': ' ' },
+			} },
+
+			{ 'type': 'freeform', 'page': 'Whole number', 'pattern': /\d+/ },
+			{ 'type': 'fixed', 'value': '.' },
+			{ 'type': 'freeform', 'page': 'Decimal', 'pattern': /\d+/, 'limit': 2, 'pad': 'suffix', 'padchar': '0' }
+		],
+		onUpdate: function(currmask, x, mask) {
+			if (x == 1 && mask[0].extra[mask[0].selectedHtml]) {
+				var info = mask[0].extra[mask[0].selectedHtml];
+
+				// Displays a formatted number to the user.
+				currmask.value = info.prefix + parseFloat(currmask.selected).formatMoney(0, info.radix, info.thousands);
+
+				mask[2].selected = info.radix;
+			}
+		},
+		finalElement: $('#maskedpicker_4_hidden')
+	});
+});
+</script>
+					</div>
+				</div>
+
+				<p>The possibilities are virtually endless.  Control formatted string construction in a user-friendly way.</p>
+
+			</div>
+
+			<div id="tab_usage">
+				<h3>Options</h3>
+<pre class="code">$('#maskedpicker').maskedpicker({
+  <b>widthElement: null,</b>
+  // The jQuery object of the element to match page width to.
+  // Default: null (uses the input element width)
+
+  <b>minWidth: -1,</b>
+  // The minimum width of each page.
+  // Default: -1 (no minimum width)
+
+  <b>maxWidth: -1,</b>
+  // The maximum width of each page.
+  // Default: -1 (no maximum width)
+
+  <b>mask: [],</b>
+  // An array of submasks.
+  // Default: Empty array (but an empty array isn't particularly useful)
+
+  <b>initial: null,</b>
+  // The initial value to use.  If not specified, the element's value will be used.
+  // Default: null
+
+  <b>onInit: null,</b>
+  // An optional callback function that will be called during initialization.
+  // Useful for handling custom mask types.
+  // Default: null
+  // Params: onInit(str, currmask, pos, mask)
+  // Return: str (modified as necessary)
+
+  <b>onUpdate: null,</b>
+  // An optional callback function that will be called whenever the element is updated.
+  // Updates are done very frequently, so callback code should be kept to a minimum.
+  // Default: null
+  // Params: onUpdate(currmask, pos, mask)
+
+  <b>onCleanupPage: null,</b>
+  // An optional callback function that will be called whenever a page is hidden.
+  // Useful for removing events added by onShowPage().
+  // Default: null
+  // Params: onCleanupPage(currmask, bodyDiv, pos, mask)
+
+  <b>onShowPage: null,</b>
+  // An optional callback function that will be called whenever a page is displayed.
+  // Useful for adding custom mask types and events.
+  // Default: null
+  // Params: onShowPage(currmask, bodyDiv, pos, mask)
+
+  <b>onKeypress: null,</b>
+  // An optional callback function that will be called whenever the user presses a key.
+  // Useful for handling custom selection and navigation.
+  // Note that this may require using "private" widget calls (underscore prefix)
+  // to get full functionality working.
+  // Default: null
+  // Params: onKeypress(handled, e, options, currmask, bodyDiv, pos, mask)
+  // Return: handled (modified as necessary)
+
+  <b>myPosition: 'left top',</b>
+  // The location of the pages in relation to atPosition.
+
+  <b>atPosition: 'left bottom',</b>
+  // The location of the element in relation to myPosition.
+  // The default is to try to show the top left of the widget
+  // just below the bottom left of the input element.
+
+  <b>showOptions: {},</b>
+  // Standard jQuery show() options array (e.g. animation when showing).
+
+  <b>hideOptions: {},</b>
+  // Standard jQuery hide() options array (e.g. animation when hiding).
+
+  <b>finalElement: null</b>
+  // The jQuery object of the element (usually hidden)
+  // to store the selected mask values in JSON format.
+});</pre>
+
+				<h3>Default types</h3>
+<pre class="code"><b>All types</b>
+All submask types implement these keys.
+
+  <b>type</b>
+  (string) Specifies the type of the submask.
+
+  <b>page</b>
+  (string) Indicates that a page should be displayed to the user
+  for this submask.
+
+  <b>initial</b>
+  (string) The initial value.
+
+  <b>prefix</b>
+  (string) A user-uneditable prefix for the final value displayed
+  in the field.
+
+  <b>selected</b>
+  (string) The currently 'selected' option for the submask.
+
+  <b>selectedHtml</b>
+  (string) Same as 'selected' but may have Unicode characters
+  encoded with HTML entities for easier interaction.
+
+  <b>suffix</b>
+  (string) An user-uneditable suffix for the final value displayed
+  in the field.
+
+  <b>entered</b>
+  (string) A string containing the characters that the user has
+  typed in.
+
+<b>fixed</b>
+Use 'value' to specify the value to display to the user.
+Don't specify 'page' so that the mask is skipped over.
+
+<b>select</b>
+Displays a set of selectable options to the user.
+
+  <b>values</b>
+  (array) An array containing one or more arrays of strings to
+  display to the user.  A value of false for an element will leave
+  the space blank.
+
+<b>freeform</b>
+Displays a text box or textarea for freeform input.
+
+  <b>multiline</b>
+  (boolean) Shows a text box when false or textarea when true.
+  Source element must be a textarea.
+
+  <b>pattern</b>
+  (regex) A Javascript regular expression to match inputs against.
+
+  <b>limit</b>
+  (integer) The maximum number of characters to allow.
+
+  <b>pad</b>
+  (string) The string 'prefix' or 'suffix'.
+
+  <b>padchar</b>
+  (string) A single character string with the character to pad with.
+
+<b>date</b>
+Displays the jQuery UI datepicker.
+
+  <b>options</b>
+  (object) A set of options to pass to the datepicker() initialization.
+</pre>
+
+				<h3>Methods</h3>
+<pre class="code"><b>$('#maskedpicker').maskedpicker('setValue', str);</b>
+// Sets the value to the specified string.
+
+<b>$('#maskedpicker').maskedpicker('refresh');</b>
+// Forces the element to update its data and current selection.
+
+<b>$('#maskedpicker').maskedpicker('nearestPage', maskPos);</b>
+// Returns the nearest page number to the maskPos value.
+
+<b>$('#maskedpicker').maskedpicker('selectPage', maskPos);</b>
+// Finds the nearest page to the maskPos value and displays it.
+
+<b>$('#maskedpicker').maskedpicker('firstPage');</b>
+// Returns the first page number.
+
+<b>$('#maskedpicker').maskedpicker('lastPage');</b>
+// Returns the last page number.
+
+<b>$('#maskedpicker').maskedpicker('prevPage');</b>
+// Returns the previous page number from the current page.
+
+<b>$('#maskedpicker').maskedpicker('nextPage');</b>
+// Returns the next page number from the current page.
+
+<b>$('#maskedpicker').maskedpicker('hidePage');</b>
+// Hides any open page.  It is probably safer/easier to change the focused element.
+
+<b>$('#maskedpicker').maskedpicker('setFocusElement', newelem);</b>
+// Sets a jQuery object as the new element to have forced focus.
+</pre>
+			</div>
+
+			<div id="tab_requirements">
+				<p>The following is required to use the masked picker.</p>
+				<ul>
+					<li><a href="http://jquery.com/">jQuery</a></li>
+					<li><a href="http://jqueryui.com/">jQuery UI</a></li>
+					<li><a href="https://github.com/cubiclesoft/jquery-ui-masked-picker/">jQuery UI Masked Picker</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="footerwrap">
+		<p>&copy; <script type="text/javascript">document.write(new Date().getFullYear());</script> <a href="http://cubiclesoft.com/">CubicleSoft</a></p>
+	</div>
+</div>
+</body>
+</html>
