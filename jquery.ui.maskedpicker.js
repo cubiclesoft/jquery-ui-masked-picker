@@ -573,11 +573,11 @@ $.widget("cubiclesoft.maskedpicker", {
 
 		// Handle previous Shift+Tab resulting in focus.
 		var lastKeypress = this.pageDiv.data("lastKeypress");
-		if (this.focusElement === null && lastKeypress && lastKeypress.shiftKey && lastKeypress.keyCode == 9) {
+		if (this.focusElement === null && lastKeypress && ((typeof(lastKeypress) === 'string' && lastKeypress === 'shift+tab') || (typeof(lastKeypress) === 'object' && lastKeypress.shiftKey && lastKeypress.keyCode == 9))) {
 //console.log('lastpage');
 			this.selectPage(this.lastPage());
 		}
-		else if (this.focusElement === null && lastKeypress && !lastKeypress.shiftKey && lastKeypress.keyCode == 9) {
+		else if (this.focusElement === null && lastKeypress && ((typeof(lastKeypress) === 'string' && lastKeypress === 'tab') || (typeof(lastKeypress) === 'object' && !lastKeypress.shiftKey && lastKeypress.keyCode == 9))) {
 //console.log('firstpage');
 			this.selectPage(this.firstPage());
 		}
@@ -687,10 +687,11 @@ $.widget("cubiclesoft.maskedpicker", {
 		});
 	},
 
-	_generateSelectHtml: function(currmask) {
+	_generateSelectHtml: function(currmask, initial) {
 		var html = '';
 
-		html += '<table class="maskedpicker-body-select"><tbody>';
+		if (initial)  html += '<div class="maskedpicker-body-select">';
+		html += '<table><tbody>';
 		for (var y = 0; y < currmask.values.length; y++) {
 			html += '<tr>';
 			for (var x = 0; x < currmask.values[y].length; x++) {
@@ -707,6 +708,7 @@ $.widget("cubiclesoft.maskedpicker", {
 			html += '</tr>';
 		}
 		html += '</tbody></table>';
+		if (initial)  html += '</div>';
 
 		return html;
 	},
@@ -771,14 +773,20 @@ $.widget("cubiclesoft.maskedpicker", {
 				{
 					if (typeof(currmask.fixed) === 'undefined')  currmask.fixed = true;
 
-					bodyDiv.html(this._generateSelectHtml(currmask));
+					bodyDiv.html(this._generateSelectHtml(currmask, true));
 
 					bodyDiv.find('.maskedpicker-body-select').on('click', 'td a', function(e) {
 						currmask.selected = $(e.target).attr('data-value');
 						currmask.selectedHtml = $this._unicodeToHtml(currmask.selected);
 
+						$this.pageDiv.data("lastKeypress", "tab");
 						if ($this.nextPage() > -1)  $this.selectPage($this.nextPage());
-						else  $this.refresh();
+						else {
+							var excludeElements = $this.focusElement;
+							$this.hidePage();
+							var elem = $this._findNextInput($this.element, excludeElements);
+							if (elem)  elem.focus();
+						}
 
 						e.preventDefault();
 					});
@@ -1016,7 +1024,7 @@ $.widget("cubiclesoft.maskedpicker", {
 								currmask.selected = currmask.entered;
 								currmask.selectedHtml = currmask.selected;
 
-								bodyDiv.html(this._generateSelectHtml(currmask));
+								bodyDiv.find('.maskedpicker-body-select').html(this._generateSelectHtml(currmask, false));
 
 								if (options['special'] === 'return')  options['right'] = true;
 								else {
@@ -1055,15 +1063,16 @@ $.widget("cubiclesoft.maskedpicker", {
 										currmask.selected = currmask.values[y][x];
 										currmask.selectedHtml = currmask.selected;
 
+										this.pageDiv.data("lastKeypress", "tab");
 										if (this.nextPage() > -1)  this.selectPage(this.nextPage());
 										else {
-											currmask.entered = '';
-											this._updateEnteredTracker(currmask, bodyDiv);
-
-											bodyDiv.html(this._generateSelectHtml(currmask));
-
-											e.preventDefault();
+											var excludeElements = this.focusElement;
+											this.hidePage();
+											var elem = this._findNextInput(this.element, excludeElements);
+											if (elem)  elem.focus();
 										}
+
+										e.preventDefault();
 									}
 									else if (newentered === currmask.values[y][x].substring(0, newentered.length)) {
 										currmask.entered = newentered;
