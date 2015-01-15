@@ -1,6 +1,6 @@
 {
   "name": "jquery-ui-maskedpicker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A jQuery UI plugin that implements a masked picker to fill in a custom-formatted string.",
   "organization": "CubicleSoft",
   "main": "jquery.ui.maskedpicker.js",
