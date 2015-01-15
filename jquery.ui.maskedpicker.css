@@ -49,7 +49,7 @@
 
 .maskedpicker-widget .maskedpicker-body { margin-top: 0.2em; }
 
-.maskedpicker-widget .maskedpicker-body .maskedpicker-body-select {
+.maskedpicker-widget .maskedpicker-body .maskedpicker-body-select table {
 	border-collapse: collapse;
 	font-size: 0.9em;
 	margin: 0 0 0.2em;
