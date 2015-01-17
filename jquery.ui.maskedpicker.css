@@ -63,6 +63,9 @@
 
 .maskedpicker-widget .maskedpicker-body .maskedpicker-body-select td span, .maskedpicker-widget .maskedpicker-body .maskedpicker-body-select td a {
 	display: block;
+	line-height: 2.0em;
+	white-space: nowrap;
+	height: 2.0em;
 	padding: 0.2em;
 	text-align: center;
 	text-decoration: none;
