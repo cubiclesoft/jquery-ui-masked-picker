@@ -176,7 +176,7 @@ $(function() {
 				</div>
 
 				<div class="example">
-					<label for="maskedpicker_2">Date/time selection with freeform</label>
+					<label for="maskedpicker_2">Date/time selection</label>
 					<div class="formitemdata">
 						<input class="text" type="text" id="maskedpicker_2" value="" />
 <script type="text/javascript">
@@ -197,11 +197,9 @@ $(function() {
 			{ 'type': 'fixed', 'value': ' ' },
 			{ 'type': 'select', 'page': 'AM/PM', 'case': 'insensitive', 'values': [
 				['am', 'pm']
-			] },
-			{ 'type': 'fixed', 'value': '  // ' },
-			{ 'type': 'freeform', 'page': 'Optional comment', 'multiline': false }
+			] }
 		],
-		initial: (new Date().getFullYear()) + '-12-31 12:00 am  // A comment'
+		initial: (new Date().getFullYear()) + '-12-31 12:00 am'
 	});
 });
 </script>
@@ -235,6 +233,74 @@ $(function() {
 			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
 			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
 			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
+			{ 'type': 'select', 'page': 'Number', 'values': dialpad }
+		]
+	});
+});
+</script>
+					</div>
+				</div>
+
+				<div class="example">
+					<label for="maskedpicker_4">Date/time selection with freeform</label>
+					<div class="formitemdata">
+						<input class="text" type="text" id="maskedpicker_4" value="" />
+<script type="text/javascript">
+$(function() {
+	$('#maskedpicker_4').maskedpicker({
+		maxWidth: 400,
+		mask: [
+			{ 'type': 'date', 'page': 'Date', 'options': { dateFormat: 'yy-mm-dd' } },
+			{ 'type': 'fixed', 'value': ' ' },
+			{ 'type': 'select', 'page': 'Hour', 'values': [
+				['1', '2', '3', '4', '5', '6'],
+				['7', '8', '9', '10', '11', '12']
+			] },
+			{ 'type': 'fixed', 'value': ':' },
+			{ 'type': 'select', 'page': 'Minute', 'values': [
+				['00', '15', '30', '45']
+			] },
+			{ 'type': 'fixed', 'value': ' ' },
+			{ 'type': 'select', 'page': 'AM/PM', 'case': 'insensitive', 'values': [
+				['am', 'pm']
+			] },
+			{ 'type': 'fixed', 'value': '  // ' },
+			{ 'type': 'freeform', 'page': 'Optional comment', 'multiline': false }
+		],
+		initial: (new Date().getFullYear()) + '-12-31 12:00 am  // A comment'
+	});
+});
+</script>
+					</div>
+				</div>
+
+				<div class="example">
+					<label for="maskedpicker_5">Phone number (USA) with extension</label>
+					<div class="formitemdata">
+						<input class="text" type="text" id="maskedpicker_5" value="(000) 000-0000" />
+<script type="text/javascript">
+$(function() {
+	var dialpad = [
+		['1', '2', '3'],
+		['4', '5', '6'],
+		['7', '8', '9'],
+		[false, '0', false]
+	];
+	$('#maskedpicker_5').maskedpicker({
+		maxWidth: 300,
+		mask: [
+			{ 'type': 'fixed', 'value': '(' },
+			{ 'type': 'select', 'page': 'Area code', 'values': dialpad },
+			{ 'type': 'select', 'page': 'Area code', 'values': dialpad },
+			{ 'type': 'select', 'page': 'Area code', 'values': dialpad },
+			{ 'type': 'fixed', 'value': ') ' },
+			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
+			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
+			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
+			{ 'type': 'fixed', 'value': '-' },
+			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
+			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
+			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
 			{ 'type': 'select', 'page': 'Number', 'values': dialpad },
 			{ 'type': 'fixed', 'value': ' ' },
 			{ 'type': 'freeform', 'page': 'Extension' }
@@ -246,10 +312,10 @@ $(function() {
 				</div>
 
 				<div class="example">
-					<label for="maskedpicker_4">Currency</label>
+					<label for="maskedpicker_6">Currency</label>
 					<div class="formitemdata">
-						<input class="text" type="text" id="maskedpicker_4" value="$1234.0" />
-						<input class="text" type="hidden" id="maskedpicker_4_hidden" value="" />
+						<input class="text" type="text" id="maskedpicker_6" value="$1234.0" />
+						<input class="text" type="hidden" id="maskedpicker_6_hidden" value="" />
 <script type="text/javascript">
 // Swiped from:  http://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-money-in-javascript
 Number.prototype.formatMoney = function(c, d, t) {
@@ -265,7 +331,7 @@ Number.prototype.formatMoney = function(c, d, t) {
 };
 
 $(function() {
-	$('#maskedpicker_4').maskedpicker({
+	$('#maskedpicker_6').maskedpicker({
 		maxWidth: 300,
 		mask: [
 			{ 'type': 'select', 'page': 'Type', 'values': [
@@ -290,7 +356,7 @@ $(function() {
 				mask[2].selected = info.radix;
 			}
 		},
-		finalElement: $('#maskedpicker_4_hidden')
+		finalElement: $('#maskedpicker_6_hidden')
 	});
 });
 </script>
