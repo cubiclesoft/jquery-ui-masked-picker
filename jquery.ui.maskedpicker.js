@@ -39,6 +39,7 @@ $.widget("cubiclesoft.maskedpicker", {
 
 	_create: function() {
 		this.nodeName = this.element[0].nodeName.toLowerCase();
+		this.prevReadOnly = false;
 		this.currPage = -1;
 		this.focusTimeout = null;
 		this.focusEnabled = true;
@@ -184,6 +185,13 @@ $.widget("cubiclesoft.maskedpicker", {
 		this.pageDiv = $('#maskedpicker-page-div');
 
 		this.element.addClass("maskedpicker-input");
+
+		// Prevent mobile devices from showing the keyboard.
+		if (this.nodeName === 'input' || this.nodeName === 'textarea') {
+			this.prevReadOnly = this.element.prop('readonly');
+			this.element.prop('readonly', true);
+		}
+
 		if (typeof(this.options.finalElement) !== 'undefined' && this.options.finalElement !== null && this.options.finalElement.val() != '') {
 			var newmask = JSON.parse(this.options.finalElement.val());
 			for (x = 0; x < newmask.length && x < this.options.mask.length; x++) {
@@ -256,6 +264,7 @@ $.widget("cubiclesoft.maskedpicker", {
 	_destroy: function() {
 		this._resetFocusTimeout();
 		this.hidePage();
+		if (this.nodeName === 'input' || this.nodeName === 'textarea')  this.element.prop('readonly', this.prevReadOnly);
 		this.element.removeClass("maskedpicker-input");
 	},
 
