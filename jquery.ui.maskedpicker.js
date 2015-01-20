@@ -583,7 +583,7 @@ $.widget("cubiclesoft.maskedpicker", {
 
 		// Handle previous Shift+Tab resulting in focus.
 		var lastKeypress = this.pageDiv.data("lastKeypress");
-		if (this.options.onFirstFocus !== null) {
+		if (typeof(this.options.onFirstFocus) === 'function') {
 //console.log('firstfocus');
 			this.options.onFirstFocus.call(this);
 
