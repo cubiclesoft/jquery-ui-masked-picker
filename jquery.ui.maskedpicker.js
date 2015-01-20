@@ -23,6 +23,7 @@ $.widget("cubiclesoft.maskedpicker", {
 		mask: [],
 		initial: null,
 
+		onFirstFocus: null,
 		onInit: null,
 		onUpdate: null,
 		onCleanupPage: null,
@@ -582,7 +583,13 @@ $.widget("cubiclesoft.maskedpicker", {
 
 		// Handle previous Shift+Tab resulting in focus.
 		var lastKeypress = this.pageDiv.data("lastKeypress");
-		if (this.focusElement === null && lastKeypress && ((typeof(lastKeypress) === 'string' && lastKeypress === 'shift+tab') || (typeof(lastKeypress) === 'object' && lastKeypress.shiftKey && lastKeypress.keyCode == 9))) {
+		if (this.options.onFirstFocus !== null) {
+//console.log('firstfocus');
+			this.options.onFirstFocus.call(this);
+
+			this.options.onFirstFocus = null;
+		}
+		else if (this.focusElement === null && lastKeypress && ((typeof(lastKeypress) === 'string' && lastKeypress === 'shift+tab') || (typeof(lastKeypress) === 'object' && lastKeypress.shiftKey && lastKeypress.keyCode == 9))) {
 //console.log('lastpage');
 			this.selectPage(this.lastPage());
 		}
