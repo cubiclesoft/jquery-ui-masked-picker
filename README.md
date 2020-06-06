@@ -3,6 +3,8 @@ jQuery UI Masked Picker
 
 A jQuery UI plugin that implements a masked picker to let users fill in a custom-formatted string.  Under a MIT or LGPL license.
 
+[![Donate](https://cubiclesoft.com/res/donate-shield.png)](https://cubiclesoft.com/donate/)
+
 Features
 --------
 
@@ -19,4 +21,4 @@ Demo and Documentation
 
 A live demo and the documentation can be viewed here:
 
-http://cubiclesoft.com/jquery-ui-maskedpicker/
+https://cubiclesoft.com/demos/jquery-ui-maskedpicker/
